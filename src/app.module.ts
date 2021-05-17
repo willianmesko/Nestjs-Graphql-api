@@ -1,0 +1,29 @@
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { GraphQLModule } from '@nestjs/graphql';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { join } from 'path';
+import { UserModule } from './user/user.module';
+import { TelevisionModule } from './television/television.module';
+import { GameModule } from './games/game.module';
+import { AuthModule } from './auth/auth.module';
+import { FavoriteModule } from './favorite/favorite.module';
+
+@Module({
+  imports: [
+    TypeOrmModule.forRoot({}),
+    GraphQLModule.forRoot({
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      context: ({ req }) => ({ req }),
+    }),
+    UserModule,
+    TelevisionModule,
+    GameModule,
+    AuthModule,
+    FavoriteModule,
+  ],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}

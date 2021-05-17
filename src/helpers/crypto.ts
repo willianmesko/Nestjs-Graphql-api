@@ -1,0 +1,9 @@
+import { hashSync, compare } from 'bcrypt';
+export const hashPasswordTransform = {
+  to(password: string): string {
+    return hashSync(password, 10);
+  },
+  from(password: string, hash: string): Promise<boolean> {
+    return compare(password, hash);
+  },
+};
