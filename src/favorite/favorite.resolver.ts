@@ -22,7 +22,7 @@ export class FavoriteResolver {
     const userId = user.id.toString();
     const { field, sort, value } = args;
     const page = args.page ? args.page : 1;
-    const take = args.take ? args.take : 3;
+    const take = args.take ? args.take : 10;
 
     let options = {}
        options = {
@@ -57,7 +57,7 @@ export class FavoriteResolver {
       page,
       take,
     );
-    console.log(favorites)
+   
     return {
       favorites,
       totalCount,

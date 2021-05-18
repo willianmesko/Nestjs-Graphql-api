@@ -25,7 +25,6 @@ export class FavoriteService {
     });
 
     
-     
       if (favorite) {
         throw new BadRequestException('Favorite already include');
       }
@@ -45,7 +44,7 @@ export class FavoriteService {
   async find(
     options: any,
     page: number,
-    take: number = 2,
+    take: number,
   ) {
     let favorites;
      favorites = await this.favoriteRepository.findAndCount({
@@ -61,7 +60,7 @@ export class FavoriteService {
     
      favorites = favorites[0].map((fav) => fav.data);
     
-   console.log(favorites)
+  
     return {
       favorites, 
       totalCount

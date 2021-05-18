@@ -13,7 +13,7 @@ export class Product {
 
   @Column()
   @Field()
-  departament: string;
+  department: string;
 
   @Column()
   @Field(() => GraphQLJSONObject)

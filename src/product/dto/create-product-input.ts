@@ -8,14 +8,14 @@ import { Television } from '../entities/television.entity';
 @InputType()
 export class CreateProductInput {
   @IsString()
-  @IsNotEmpty({ message: 'Departament is required' })
+  @IsNotEmpty({ message: 'department is required' })
   @Field()
-  departament: string;
+  department: string;
 
   @IsObject()
   @IsNotEmpty({ message: 'Data is required' })
   @Field(() => GraphQLJSONObject)
-  product: Game | Television
+  product: object
 
  
 }

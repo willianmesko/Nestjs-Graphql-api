@@ -11,14 +11,17 @@ export class ProductService {
 
     }
 
+   
+
     async create(createProducInput: CreateProductInput) : Promise<Product> {
+    
       const product = this.productRepository.create(createProducInput);
       await this.productRepository.save(product);
 
       return product;
     }
 
-    async getAll(options: any, page: number, take: number) : Promise<any> {
+    async getAll(options?: any, page?: number, take?: number) : Promise<any> {
         let products;
         let totalCount;
     
