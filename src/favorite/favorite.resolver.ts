@@ -20,21 +20,46 @@ export class FavoriteResolver {
     @Args() args: SearchArgs,
   ): Promise<any> {
     const userId = user.id.toString();
-
     const { field, sort, value } = args;
     const page = args.page ? args.page : 1;
-    const take = args.take ? args.take : 2;
+    const take = args.take ? args.take : 3;
 
-    const { favorites, totalCount } = await this.favoriteService.find(
-      userId,
-      field,
-      sort,
-      value,
+    let options = {}
+       options = {
+      where: {
+        userId,
+        
+      }
+    };
+ 
+    if (field && value) {
+      options = {
+        where: {
+          $and: [
+            {userId: { $eq: userId }},
+            {[field]: {$eq: value}}
+          ]
+        },
+      };
+    }
+
+    if (field && sort) {
+      options = {
+        ...options,
+        order: {
+          [field]: sort.toLocaleUpperCase(),
+        },
+      };
+    }
+
+    const {favorites, totalCount } = await this.favoriteService.find(
+     options,
       page,
       take,
     );
+    console.log(favorites)
     return {
-      data: favorites,
+      favorites,
       totalCount,
     };
   }
@@ -42,10 +67,11 @@ export class FavoriteResolver {
   @UseGuards(GqlAuthGuard)
   @Mutation(() => Favorite)
   async createFavorite(
+    @CurrentUser() user: User,
     @Args({ name: 'data', type: () => CreateFavoriteInput })
     data: CreateFavoriteInput,
   ): Promise<Favorite> {
-    const favorites = await this.favoriteService.create(data);
+    const favorites = await this.favoriteService.create(user.id.toString(),data);
 
     return favorites;
   }

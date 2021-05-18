@@ -1,6 +1,6 @@
 {
   "type": "mongodb",
-  "host": "db",
+  "host": "localhost",
   "port": 27017,
   "database": "growthackers",
   "entities": ["dist/**/*.entity{.ts,.js}"],

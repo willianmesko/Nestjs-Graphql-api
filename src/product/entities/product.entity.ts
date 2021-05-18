@@ -1,19 +1,22 @@
-import { Field, HideField, ID, ObjectType } from '@nestjs/graphql';
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, ObjectID, ObjectIdColumn } from 'typeorm';
 import { GraphQLJSONObject } from 'graphql-type-json';
+import { Game } from './game.entity';
+import { Television } from './television.entity';
 
 @ObjectType()
 @Entity()
-export class Favorite {
+export class Product {
   @ObjectIdColumn()
   @Field(() => ID)
-  @HideField()
   id: ObjectID;
 
   @Column()
-  userId: string;
+  @Field()
+  departament: string;
 
   @Column()
   @Field(() => GraphQLJSONObject)
-  data: object;
+  product: Game | Television
+
 }

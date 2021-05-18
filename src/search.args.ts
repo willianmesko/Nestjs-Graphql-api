@@ -9,4 +9,5 @@ export class SearchArgs {
   value?: string | number;
   take?: number;
   page?: number;
+  department?: string;
 }

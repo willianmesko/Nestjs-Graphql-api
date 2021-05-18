@@ -5,10 +5,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { join } from 'path';
 import { UserModule } from './user/user.module';
-import { TelevisionModule } from './television/television.module';
-import { GameModule } from './games/game.module';
 import { AuthModule } from './auth/auth.module';
 import { FavoriteModule } from './favorite/favorite.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -18,10 +17,9 @@ import { FavoriteModule } from './favorite/favorite.module';
       context: ({ req }) => ({ req }),
     }),
     UserModule,
-    TelevisionModule,
-    GameModule,
     AuthModule,
     FavoriteModule,
+    ProductModule,
   ],
   controllers: [AppController],
   providers: [AppService],
