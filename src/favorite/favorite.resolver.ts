@@ -5,7 +5,6 @@ import { CurrentUser } from 'src/auth/current.user';
 import { SearchArgs } from 'src/search.args';
 import { User } from 'src/user/user.entity';
 import { CreateFavoriteInput } from './dto/create-favorite.input';
-import { DeleteFavoriteInput } from './dto/delete-favorite.input';
 import { GetFavoriteOutput } from './dto/get-favorites.output';
 import { Favorite } from './favorite.entity';
 import { FavoriteService } from './favorite.service';

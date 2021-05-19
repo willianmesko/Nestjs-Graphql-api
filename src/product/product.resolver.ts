@@ -30,7 +30,6 @@ export class ProductResolver {
         },
       };
     }
-    
 
     if (field && sort) {
       options = {

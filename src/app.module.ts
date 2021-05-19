@@ -20,7 +20,7 @@ import { ProductModule } from './product/product.module';
     FavoriteModule,
     ProductModule,
   ],
- 
+
   providers: [AppService],
 })
 export class AppModule {}
