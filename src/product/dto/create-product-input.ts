@@ -13,7 +13,7 @@ export class CreateProductInput {
   department: string;
 
   @IsObject()
-  @IsNotEmpty({ message: 'Data is required' })
+  @IsNotEmpty({ message: 'Product is required' })
   @Field(() => GraphQLJSONObject)
   product: object
 

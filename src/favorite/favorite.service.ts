@@ -1,6 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-
 import { MongoRepository } from 'typeorm';
 import { CreateFavoriteInput } from './dto/create-favorite.input';
 import { Favorite } from './favorite.entity';
@@ -12,9 +11,9 @@ export class FavoriteService {
     private favoriteRepository: MongoRepository<Favorite>,
   ) {}
 
-  async create(userId: string, {product}: CreateFavoriteInput): Promise<Favorite> {
+  async createOrDelete(userId: string, {product}: CreateFavoriteInput): Promise<Favorite> {
     let favorite: Favorite;
-    console.log(product)
+ 
     favorite = await this.favoriteRepository.findOne({
       where: {
        
@@ -27,7 +26,9 @@ export class FavoriteService {
 
     
       if (favorite) {
-        throw new BadRequestException('Favorite already include');
+          await this.favoriteRepository.delete(favorite);
+
+           return favorite;
       }
 
       favorite =  this.favoriteRepository.create(
@@ -61,7 +62,7 @@ export class FavoriteService {
       const totalCount = favorites[1];
     
      favorites = favorites[0].map((fav) => fav.product);
-  console.log("RATING", favorites);
+  
    
     return {
       favorites, 

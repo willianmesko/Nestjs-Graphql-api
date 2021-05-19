@@ -16,7 +16,7 @@ export class ProductResolver {
     const { field, sort, value, department} = args;
     const page = args.page ? args.page : 1;
     const take = args.take ? args.take : 3;
-    console.log(field)
+   
     options = {
         where: {
           department
