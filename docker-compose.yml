@@ -19,7 +19,7 @@ services:
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_DATABASE: "growthackers"
+      MONGO_INITDB_DATABASE: "mongodatabase"
       
 volumes:
   mongodata: 

@@ -2,7 +2,7 @@
   "type": "mongodb",
   "host": "localhost",
   "port": 27017,
-  "database": "growthackers",
+  "database": "mongodatabase",
   "entities": ["dist/**/*.entity{.ts,.js}"],
   "synchronize": true
 }
