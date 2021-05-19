@@ -35,10 +35,10 @@ export class FavoriteResolver {
     if (field && value) {
       options = {
         where: {
-          $and: [
-            {userId: { $eq: userId }},
-            {[field]: {$eq: value}}
-          ]
+        
+          userId: { $eq: userId },
+            [field]: {$eq: value}
+         
         },
       };
     }
@@ -52,7 +52,7 @@ export class FavoriteResolver {
       };
     }
 
-    const {favorites, totalCount } = await this.favoriteService.find(
+    const {favorites, totalCount } = await this.favoriteService.getAll(
      options,
       page,
       take,

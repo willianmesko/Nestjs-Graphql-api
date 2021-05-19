@@ -10,7 +10,7 @@ import { Television } from 'src/product/entities/television.entity';
 export class CreateFavoriteInput {
   @IsNotEmpty({ message: 'favorites is required' })
   @Field(() => GraphQLJSONObject)
-  data: Game | Television
+  product: Game | Television
 
  
 }

@@ -26,7 +26,7 @@ type AuthType {
 
 type Favorite {
   id: ID!
-  data: JSONObject!
+  product: JSONObject!
   userId: String!
 }
 
@@ -43,8 +43,8 @@ type GetProductsOutput {
 type Query {
   user(id: String!): User!
   users: [User!]!
-  favorites(value: String, sort: String, field: String, take: Float, page: Float, department: String): GetFavoriteOutput!
-  products(value: String, sort: String, field: String, take: Float, page: Float, department: String): GetProductsOutput!
+  favorites(sort: String, field: String, value: String, take: Float, page: Float, department: String): GetFavoriteOutput!
+  products(sort: String, field: String, value: String, take: Float, page: Float, department: String): GetProductsOutput!
 }
 
 type Mutation {
@@ -73,7 +73,7 @@ input AuthInput {
 }
 
 input CreateFavoriteInput {
-  data: JSONObject!
+  product: JSONObject!
 }
 
 input CreateProductInput {

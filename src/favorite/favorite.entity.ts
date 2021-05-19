@@ -15,5 +15,5 @@ export class Favorite {
 
   @Column()
   @Field(() => GraphQLJSONObject)
-  data: object;
+  product: object;
 }

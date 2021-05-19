@@ -12,14 +12,15 @@ export class FavoriteService {
     private favoriteRepository: MongoRepository<Favorite>,
   ) {}
 
-  async create(userId: string, {data}: CreateFavoriteInput): Promise<Favorite> {
+  async create(userId: string, {product}: CreateFavoriteInput): Promise<Favorite> {
     let favorite: Favorite;
+    console.log(product)
     favorite = await this.favoriteRepository.findOne({
       where: {
-        $and: [
-          {userId: { $eq: userId }},
-          {"data.name": {$eq: data.name}}
-        ]
+       
+         userId: { $eq: userId },
+         "product.name": {$eq: product.name}
+       
        
       },
     });
@@ -31,7 +32,7 @@ export class FavoriteService {
 
       favorite =  this.favoriteRepository.create(
         {userId,
-          data,
+          product,
         }
       )
 
@@ -41,14 +42,15 @@ export class FavoriteService {
   
   }
 
-  async find(
+  async getAll(
     options: any,
     page: number,
     take: number,
   ) {
     let favorites;
+   
      favorites = await this.favoriteRepository.findAndCount({
-      select: ['data'], 
+      select: ['product'], 
     
       id: false,
       ...options,
@@ -58,9 +60,9 @@ export class FavoriteService {
     }, );
       const totalCount = favorites[1];
     
-     favorites = favorites[0].map((fav) => fav.data);
-    
-  
+     favorites = favorites[0].map((fav) => fav.product);
+  console.log("RATING", favorites);
+   
     return {
       favorites, 
       totalCount

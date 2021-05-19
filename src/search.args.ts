@@ -5,8 +5,7 @@ import { Field } from '@nestjs/graphql';
 export class SearchArgs {
   sort?: string;
   field?: string;
-  @Field(() => String || Number)
-  value?: string | number;
+  value?: string;
   take?: number;
   page?: number;
   department?: string;
