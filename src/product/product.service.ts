@@ -6,38 +6,34 @@ import { Product } from './entities/product.entity';
 
 @Injectable()
 export class ProductService {
-    constructor(  @InjectRepository(Product)
-    private productRepository: MongoRepository<Product>) {
+  constructor(
+    @InjectRepository(Product)
+    private productRepository: MongoRepository<Product>,
+  ) {}
 
-    }
+  async create(createProducInput: CreateProductInput): Promise<Product> {
+    const product = this.productRepository.create(createProducInput);
+    await this.productRepository.save(product);
 
-   
+    return product;
+  }
 
-    async create(createProducInput: CreateProductInput) : Promise<Product> {
-    
-      const product = this.productRepository.create(createProducInput);
-      await this.productRepository.save(product);
+  async getAll(options?: any, page?: number, take?: number): Promise<any> {
+    let products;
+    let totalCount;
 
-      return product;
-    }
+    products = await this.productRepository.findAndCount({
+      ...options,
+      take,
+      skip: (page - 1) * take,
+    });
 
-    async getAll(options?: any, page?: number, take?: number) : Promise<any> {
-        let products;
-        let totalCount;
-     
-         products = await this.productRepository.findAndCount({
-            ...options,
-            take,
-            skip: (page - 1) * take,
-        });
- 
-  totalCount = products[1];     
-   products = products[0].map(product => product.product)
-   
-   
-        return {
-            products,
-            totalCount
-        }
-      }
+    totalCount = products[1];
+    products = products[0].map(product => product.product);
+
+    return {
+      products,
+      totalCount,
+    };
+  }
 }

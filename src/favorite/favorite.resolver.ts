@@ -5,6 +5,7 @@ import { CurrentUser } from 'src/auth/current.user';
 import { SearchArgs } from 'src/search.args';
 import { User } from 'src/user/user.entity';
 import { CreateFavoriteInput } from './dto/create-favorite.input';
+import { DeleteFavoriteInput } from './dto/delete-favorite.input';
 import { GetFavoriteOutput } from './dto/get-favorites.output';
 import { Favorite } from './favorite.entity';
 import { FavoriteService } from './favorite.service';
@@ -24,21 +25,18 @@ export class FavoriteResolver {
     const page = args.page ? args.page : 1;
     const take = args.take ? args.take : 10;
 
-    let options = {}
-       options = {
+    let options = {};
+    options = {
       where: {
         userId,
-        
-      }
+      },
     };
- 
+
     if (field && value) {
       options = {
         where: {
-        
           userId: { $eq: userId },
-            [field]: {$eq: value}
-         
+          [field]: { $eq: value },
         },
       };
     }
@@ -52,12 +50,12 @@ export class FavoriteResolver {
       };
     }
 
-    const {favorites, totalCount } = await this.favoriteService.getAll(
-     options,
+    const { favorites, totalCount } = await this.favoriteService.getAll(
+      options,
       page,
       take,
     );
-   
+
     return {
       favorites,
       totalCount,
@@ -71,8 +69,25 @@ export class FavoriteResolver {
     @Args({ name: 'data', type: () => CreateFavoriteInput })
     data: CreateFavoriteInput,
   ): Promise<Favorite> {
-    const favorites = await this.favoriteService.create(user.id.toString(),data);
+    const favorites = await this.favoriteService.createFavorite(
+      user.id.toString(),
+      data,
+    );
 
     return favorites;
+  }
+
+  @UseGuards(GqlAuthGuard)
+  @Mutation(() => Favorite)
+  async deleteFavorite(
+    @CurrentUser() user: User,
+    @Args('productName') productName: string,
+  ): Promise<Favorite> {
+    const deleted = await this.favoriteService.deleteFavorite(
+      user.id.toString(),
+      productName,
+    );
+
+    return deleted;
   }
 }

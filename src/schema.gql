@@ -52,6 +52,7 @@ type Mutation {
   UpdateUser(id: String!, data: UpdateUserInput!): User!
   login(data: AuthInput!): AuthType!
   createFavorite(data: CreateFavoriteInput!): Favorite!
+  deleteFavorite(productName: String!): Favorite!
   createProduct(data: CreateProductInput!): Product!
 }
 
