@@ -21,7 +21,7 @@ export class ProductService {
   async getAll(options?: any, page?: number, take?: number): Promise<any> {
     let products;
     let totalCount;
-
+   
     products = await this.productRepository.findAndCount({
       ...options,
       take,

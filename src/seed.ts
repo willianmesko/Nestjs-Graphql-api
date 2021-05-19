@@ -1,7 +1,8 @@
 export default [{
     "department":"games",
     "product": {
-        "name": "Playstation 5",
+    "id":10,
+    "name": "Playstation 5",
       "price": "10000",
       "reviewCount": "20",
       "rating": "5",
@@ -13,6 +14,7 @@ export default [{
 {
     "department":"games",
     "product": {
+        "id":20,
         "name": "Xbox series X",
         "price": "18000",
         "reviewCount": "50",
@@ -25,6 +27,7 @@ export default [{
 {
     "department":"games",
     "product": {
+        "id":30,
         "name": "Nintendo switch",
         "price": "19000",
         "reviewCount": "15",
@@ -37,6 +40,7 @@ export default [{
 {
     "department":"games",
     "product": {
+        "id":40,
         "name": "Playstation 4",
       "price": "23000",
       "reviewCount": "15",
@@ -49,6 +53,7 @@ export default [{
 {
     "department":"games",
     "product": {
+        "id":50,
         "name": "Xbox one",
       "price": "300",
       "reviewCount": "50",
@@ -61,6 +66,7 @@ export default [{
 {
     "department":"games",
     "product": {
+        "id":60,
         "name": "Nintendo Wii U",
         "price": "39000",
         "reviewCount": "15",
@@ -73,7 +79,8 @@ export default [{
 {
     "department":"televisions",
     "product": {
-        "name": "Smart TV LG LED FullHd 32 ",
+        "id":70,
+        "name": "Smart TV LG LED FullHd 32",
         "price": "18000",
         "reviewCount": "50",
         "rating": "3",
@@ -86,6 +93,7 @@ export default [{
 {
     "department":"televisions",
     "product": {
+        "id":80,
         "name": "Smart TV Sony LED FullHd 42",
       "price": "19000",
       "reviewCount": "15",
@@ -99,6 +107,7 @@ export default [{
 {
     "department":"televisions",
     "product": {
+        "id":90,
         "name": "Smart TV Sony LED 4K 43",
         "price": "23000",
         "reviewCount": "151",
@@ -112,6 +121,7 @@ export default [{
 {
     "department":"televisions",
     "product": {
+        "id":100,
         "name": "Smart TV LG LED 4K 70",
         "price": "300",
         "reviewCount": "50",
@@ -124,6 +134,7 @@ export default [{
 {
     "department":"televisions",
     "product": {
+        "id":110,
         "name": "Smart TV Samsung LED Fullhd 42",
         "price": "39000",
         "reviewCount":"15" ,
@@ -137,7 +148,8 @@ export default [{
 {
     "department":"televisions",
     "product": {
-        "name": "Smart TV Philips LED 4K 47 ",
+        "id":120,
+        "name": "Smart TV Philips LED 4K 47",
         "price": "10000",
         "reviewCount": "20",
         "rating": "5",

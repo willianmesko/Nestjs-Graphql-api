@@ -40,11 +40,9 @@ export class FavoriteService {
   }
   async getAll(options: any, page: number, take: number) {
     let favorites;
-
+ 
     favorites = await this.favoriteRepository.findAndCount({
       select: ['product'],
-
-      id: false,
       ...options,
       take,
       skip: (page - 1) * take,
