@@ -4,6 +4,9 @@ import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 @InputType()
 export class UpdateUserInput {
   @IsString()
+  id: string;
+
+  @IsString()
   @IsNotEmpty({ message: 'Name is required' })
   @IsOptional()
   name: string;
