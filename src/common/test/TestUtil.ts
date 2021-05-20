@@ -1,15 +1,15 @@
 import { CreateUserInput } from '../../user/dto/create-user.input'
 import { UpdateUserInput } from '../../user/dto/update-user.input'
 import { User } from './../../user/user.entity';
-import { Chance } from 'chance';
+
 import { ObjectID } from 'typeorm';
 
-const chance = new Chance();
+
 
 export const mockAddAccountParams: CreateUserInput = {
-  name: chance.name(),
-  email: chance.email(),
-  password: chance.string()
+  name: 'user',
+  email: 'user@example.com',
+  password: '123456',
 };
 
 export const mockUpdateUserParams: UpdateUserInput = {
@@ -35,12 +35,12 @@ export const mockUserArrayModel: User[] = [
     id: new ObjectID(),
     name: 'Test User 2',
     email: 'email2@email.com',
-    password: chance.string()
+    password: '123456'
   },
   {
     id: new ObjectID(),
     name: 'Test User 3',
     email: 'email3@email.com',
-    password: chance.string()
+    password: '123456'
   },
 ];
