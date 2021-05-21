@@ -4,12 +4,12 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { hashPasswordTransform } from 'src/helpers/crypto';
-import { ObjectID, Repository } from 'typeorm';
+import { hashPasswordTransform } from '../common/transformers/crypto-transform';
+import {  Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { User } from './user.entity';
-
+import { ObjectID } from 'mongodb';
 @Injectable()
 export class UserService {
   constructor(
@@ -19,7 +19,6 @@ export class UserService {
 
   async createUser(data: CreateUserInput): Promise<User> {
     let user;
-
     user = await this.userRepository.findOne({
       where: {
         email: { $eq: data.email },
@@ -36,13 +35,14 @@ export class UserService {
     return user;
   }
 
-  async findAllUser(): Promise<User[]> {
+  async findAllUsers(): Promise<User[]> {
     const users = await this.userRepository.find();
 
     return users;
   }
 
   async findById(id: string): Promise<User> {
+  
     const user = await this.userRepository.findOne(id);
     if (!user) {
       throw new NotFoundException('User not found');
@@ -50,8 +50,8 @@ export class UserService {
 
     return user;
   }
-  async updateUser(id: string, data: UpdateUserInput): Promise<User> {
-    const user = await this.findById(id);
+  async updateUser(data: UpdateUserInput): Promise<User> {
+    const user = await this.findById(data.id);
 
     await this.userRepository.update(user, { ...data });
 

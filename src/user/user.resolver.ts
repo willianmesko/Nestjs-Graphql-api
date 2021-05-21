@@ -18,9 +18,8 @@ export class UserResolver {
   @Mutation(() => User)
   async UpdateUser(
     @Args('data') data: UpdateUserInput,
-    @Args('id') id: string,
   ): Promise<User> {
-    const user = await this.userService.updateUser(id, data);
+    const user = await this.userService.updateUser(data);
 
     return user;
   }
@@ -33,7 +32,7 @@ export class UserResolver {
   }
   @Query(() => [User])
   async users(): Promise<User[]> {
-    const users = await this.userService.findAllUser();
+    const users = await this.userService.findAllUsers();
 
     return users;
   }

@@ -1,6 +1,5 @@
 import { Field, HideField, ID, ObjectType } from '@nestjs/graphql';
-import { hashPasswordTransform } from 'src/helpers/crypto';
-import { Column, Entity, ObjectIdColumn, ObjectID } from 'typeorm';
+import {  Entity, ObjectIdColumn, ObjectID, Column  } from 'typeorm';
 
 @ObjectType()
 @Entity()

@@ -1,10 +1,9 @@
 import { CreateUserInput } from '../../user/dto/create-user.input'
 import { UpdateUserInput } from '../../user/dto/update-user.input'
 import { User } from './../../user/user.entity';
+import { ObjectID } from 'mongodb';
 
-import { ObjectID } from 'typeorm';
-
-
+export const mockId = new ObjectID()
 
 export const mockAddAccountParams: CreateUserInput = {
   name: 'user',
@@ -20,7 +19,7 @@ export const mockUpdateUserParams: UpdateUserInput = {
 };
 
 export const mockUserModel: User = {
-  id: new ObjectID(),
+  id: mockId,
   ...mockAddAccountParams,
 };
 
@@ -32,13 +31,13 @@ export const mockUpdatedUserModel: User = {
 export const mockUserArrayModel: User[] = [
   mockUserModel,
   {
-    id: new ObjectID(),
+    id:mockId,
     name: 'Test User 2',
     email: 'email2@email.com',
     password: '123456'
   },
   {
-    id: new ObjectID(),
+    id:mockId,
     name: 'Test User 3',
     email: 'email3@email.com',
     password: '123456'
